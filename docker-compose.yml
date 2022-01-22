@@ -1,0 +1,53 @@
+version: "3.7"
+services:
+  myweb:
+    build:
+      context: .
+      args:
+        whoami: "Ben"
+    image: ben1004/myweb1:latest
+    ports:
+      - "8091:80"
+    networks:
+      - mybridge001
+  myweb2:
+    build:
+      context: .
+      args:
+        whoami: "Ken"
+    image: ben1004/myweb2:latest
+    ports:
+      - "8092:80"
+    networks:
+      - mybridge001
+  myweb3:
+    build:
+      context: .
+      args:
+        whoami: "Lan"
+    image: ben1004/myweb3:latest
+    ports:
+      - "8093:80"
+    networks:
+      - mybridge001
+  myweb4:
+    image: ben1004/myweb1:latest
+    ports:
+      - "8094:80"
+    networks:
+      - mybridge002
+  myweb5:
+    image: ben1004/myweb1:latest
+    ports:
+      - "8095:80"
+    networks:
+      - mybridge002
+    volumes:
+      - mainpage-vol002:/var/www/localhost/htdocs/
+
+networks:
+  mybridge001:
+  mybridge002:
+
+volumes:
+ mainpage-vol002:
